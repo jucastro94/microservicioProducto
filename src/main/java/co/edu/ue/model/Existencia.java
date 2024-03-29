@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
+
 /**
  * The persistent class for the existencias database table.
  * 

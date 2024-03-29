@@ -16,25 +16,25 @@ public class ExistenciaController {
 	@Autowired
 	ExistenciaServiceI existenciaService;
 	
-	@GetMapping(value="existencia/{idProducto}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public int getExistencia(@PathVariable("idProducto") int idProducto) {
-		return existenciaService.getExistencia(idProducto);
+	@GetMapping(value="existencia/{idProducto}/{idUsu}", produces =MediaType.APPLICATION_JSON_VALUE)
+	public int getExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("idUsu") int idUsu) {
+		return existenciaService.getExistencia(idProducto, idUsu);
 	}
-	@GetMapping(value="existencia/{idProducto}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public Existencia getDetalleExistencia(@PathVariable("idProducto") int idProducto) {
-		return existenciaService.getDetalleExistencia(idProducto);
+	@GetMapping(value="existenciaDetalle/{idProducto}/{idUsu}", produces =MediaType.APPLICATION_JSON_VALUE)
+	public Existencia getDetalleExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("idUsu") int idUsu) {
+		return existenciaService.getDetalleExistencia(idProducto, idUsu);
 	}
-	@PostMapping(value= "addExistencia", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Existencia addProducto(@RequestBody Existencia existencia) {
-		return existenciaService.addExistencia(existencia);
+	@PostMapping(value= "addExistencia/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Existencia addProducto(@RequestBody Existencia existencia,@PathVariable("idUsu") int idUsu) {
+		return existenciaService.addExistencia(existencia, idUsu);
 	}
-	@GetMapping(value="sumarExistencia/{idProducto}/{cantidad}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public Existencia sumarExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("cant") int cantidad) {
-		return existenciaService.sumarExistencia(idProducto,cantidad);
+	@GetMapping(value="sumarExistencia/{idProducto}/{cantidad}/{idUsu}", produces =MediaType.APPLICATION_JSON_VALUE)
+	public Existencia sumarExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("cant") int cantidad,@PathVariable("idUsu") int idUsu) {
+		return existenciaService.sumarExistencia(idProducto,cantidad, idUsu);
 	}
-	@GetMapping(value="restarExistencia/{idProducto}/{cantidad}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public boolean restarExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("cant") int cantidad) {
-		return existenciaService.restarExistencia(idProducto,cantidad);
+	@GetMapping(value="restarExistencia/{idProducto}/{cantidad}/{idUsu}", produces =MediaType.APPLICATION_JSON_VALUE)
+	public boolean restarExistencia(@PathVariable("idProducto") int idProducto,@PathVariable("cant") int cantidad,@PathVariable("idUsu") int idUsu) {
+		return existenciaService.restarExistencia(idProducto,cantidad, idUsu);
 	}
 	
 }

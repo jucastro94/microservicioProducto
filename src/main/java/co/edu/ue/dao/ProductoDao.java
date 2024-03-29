@@ -28,18 +28,15 @@ public class ProductoDao implements ProductoDaoI{
 	@Override
 	public void deleteIdProducto(int id) {
 		productoJPA.deleteById(id);
-		
 	}
 
 	@Override
 	public Producto searchProducto(int id) {
-		
 		return productoJPA.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<Producto> getAllProductos() {
-		
 		return productoJPA.findAll();
 	}
 	

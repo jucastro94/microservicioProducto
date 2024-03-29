@@ -9,49 +9,52 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 
-@Entity
-@NamedQuery(name="ProductoUsuario.findAll", query="SELECT pu FROM Categoria pu")
-public class ProductoUsuario implements Serializable{
 
-	/**
-	 * 
-	 */
+/**
+ * The persistent class for the productousuario database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Productousuario.findAll", query="SELECT p FROM Productousuario p")
+public class Productousuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idProductoUsuario")
-	private int idCategoria;
+	private int idProductoUsuario;
 
 	@Column(name="FK_producto")
 	private int FK_producto;
-	
+
 	@Column(name="FK_usuario")
 	private int FK_usuario;
-	
-	public int getIdCategoria() {
-		return idCategoria;
+
+	public Productousuario() {
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+	public int getIdProductoUsuario() {
+		return this.idProductoUsuario;
+	}
+
+	public void setIdProductoUsuario(int idProductoUsuario) {
+		this.idProductoUsuario = idProductoUsuario;
 	}
 
 	public int getFK_producto() {
-		return FK_producto;
+		return this.FK_producto;
 	}
 
-	public void setFK_producto(int fK_producto) {
-		FK_producto = fK_producto;
+	public void setFK_producto(int FK_producto) {
+		this.FK_producto = FK_producto;
 	}
 
 	public int getFK_usuario() {
-		return FK_usuario;
+		return this.FK_usuario;
 	}
 
-	public void setFK_usuario(int fK_usuario) {
-		FK_usuario = fK_usuario;
+	public void setFK_usuario(int FK_usuario) {
+		this.FK_usuario = FK_usuario;
 	}
 
-	
 }

@@ -29,17 +29,17 @@ public class ProductoController {
 		return productoService.searchProducto(id);
 	}
 	
-	@PostMapping(value="addPoducto", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Producto addProducto(@RequestBody Producto producto) {
-		return productoService.addProducto(producto);
+	@PostMapping(value="addPoducto/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Producto addProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
+		return productoService.addProducto(producto, idUsu);
 	}
-	@PutMapping(value="updateProducto", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Producto updateProducto(@RequestBody Producto producto) {
-		return productoService.UpdateProducto(producto);
+	@PutMapping(value="updateProducto/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Producto updateProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
+		return productoService.UpdateProducto(producto, idUsu);
 	}
-	@DeleteMapping(value="deleteProducto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean deleteProducto(@PathVariable("id") int id) {
-		return productoService.deleteIdProducto(id);
+	@DeleteMapping(value="deleteProducto/{id}/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public boolean deleteProducto(@PathVariable("id") int id,@PathVariable("idUsu") int idUsu) {
+		return productoService.deleteIdProducto(id, idUsu);
 	}
 	
 }

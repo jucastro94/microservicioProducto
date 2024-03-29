@@ -1,9 +1,11 @@
 package co.edu.ue.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import co.edu.ue.model.Existencia;
 
+@Repository
 public class ExistenciaDao implements ExistenciasDaoI{
 	@Autowired
 	ExistenciaJPA existenciaJPA;

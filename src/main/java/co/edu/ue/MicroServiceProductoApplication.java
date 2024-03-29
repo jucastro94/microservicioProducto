@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan({"co.edu.ue.model"})
-@EnableJpaRepositories(basePackages = {"co.edu.eu.dao"})
+@EnableJpaRepositories(basePackages = {"co.edu.ue.dao"})
 @ComponentScan(basePackages = {"co.edu.ue.service","co.edu.ue.controller","co.edu.ue.dao"})
 public class MicroServiceProductoApplication {
 

@@ -3,27 +3,29 @@ package co.edu.ue.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import co.edu.ue.model.ProductoUsuario;
+import co.edu.ue.model.Productousuario;
 
+@Repository
 public class ProductosUsuarioDao implements ProductosUsuarioDaoI {
 	@Autowired
 	ProductosUsuarioJPA productosUsuarioJPA;
 
 	@Override
-	public List<ProductoUsuario> buscarxUsuario(int cedula) {
+	public List<Productousuario> buscarxUsuario(int cedula) {
 		// TODO Auto-generated method stub
 		return productosUsuarioJPA.findByFK_usuario(cedula);
 	}
 
 	@Override
-	public List<ProductoUsuario> buscarxProducto(int idProducto) {
+	public List<Productousuario> buscarxProducto(int idProducto) {
 		// TODO Auto-generated method stub
 		return productosUsuarioJPA.findByFK_producto(idProducto);
 	}
 
 	@Override
-	public ProductoUsuario addProductoUsuario(ProductoUsuario productoUsuario) {
+	public Productousuario addProductoUsuario(Productousuario productoUsuario) {
 		// TODO Auto-generated method stub
 		return productosUsuarioJPA.save(productoUsuario);
 	}

@@ -3,9 +3,9 @@ package co.edu.ue.service;
 import co.edu.ue.model.Existencia;
 
 public interface ExistenciaServiceI{
-	Existencia sumarExistencia(int id, int cant);
-	boolean restarExistencia(int id, int cant);
-	Existencia getDetalleExistencia(int id);
-	int getExistencia(int id);
-	Existencia addExistencia(Existencia existencia);
+	Existencia sumarExistencia(int id, int cant, int usu);
+	boolean restarExistencia(int id, int cant, int usu);
+	Existencia getDetalleExistencia(int id, int usu);
+	int getExistencia(int id, int usu);
+	Existencia addExistencia(Existencia existencia, int usu);
 }
