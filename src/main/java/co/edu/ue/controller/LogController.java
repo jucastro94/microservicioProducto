@@ -3,7 +3,10 @@ package co.edu.ue.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,16 +22,24 @@ public class LogController {
 	LogServiceI logService;
 	
 	@GetMapping(value="log/{id}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public Log getLog(@PathVariable("id") int id) {
-		return logService.getLog(id);
+	public ResponseEntity<Log> getLog(@PathVariable("id") int id) {
+		Log dato= logService.getLog(id);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<Log>(dato,headers,HttpStatus.OK);
 	}
+	
 	@GetMapping(value="logs", produces =MediaType.APPLICATION_JSON_VALUE)
-	public List<Log> getProductos(){
-		return logService.getAllLog();
+	public ResponseEntity<List<Log>>getProductos(){
+		List<Log>dato= logService.getAllLog();
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<List<Log>>(dato,headers,HttpStatus.OK);
 	}
+	
 	@PostMapping(value="addLog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Log addlog(@RequestBody Log log) {
-		return logService.addLog(log);
+	public ResponseEntity<Log> addlog(@RequestBody Log log) {
+		Log dato=  logService.addLog(log);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<Log>(dato,headers,HttpStatus.OK);
 	}
 	
 }

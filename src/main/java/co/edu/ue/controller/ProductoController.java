@@ -3,7 +3,10 @@ package co.edu.ue.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,25 +24,52 @@ public class ProductoController {
 	ProductoServiceI productoService;
 	
 	@GetMapping(value="productos", produces =MediaType.APPLICATION_JSON_VALUE)
-	public List<Producto> getProductos(){
-		return productoService.getAllProductos();
+	public ResponseEntity<List<Producto>> getProductos(){
+		List<Producto> dato= productoService.getAllProductos();
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<List<Producto>>(dato,headers,HttpStatus.OK);
 	}
 	@GetMapping(value="producto/{id}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public Producto getProducto(@PathVariable("id") int id) {
-		return productoService.searchProducto(id);
+	public ResponseEntity<Producto> getProducto(@PathVariable("id") int id) {
+		Producto dato= productoService.searchProducto(id);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<Producto>(dato,headers,HttpStatus.OK);
 	}
 	
 	@PostMapping(value="addPoducto/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Producto addProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
-		return productoService.addProducto(producto, idUsu);
+	public ResponseEntity<Boolean> addProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
+		HttpHeaders headers = new HttpHeaders();
+		
+		if(productoService.searchProducto(producto.getIdProducto())!=null) {
+			productoService.addProducto(producto, idUsu);
+			return new ResponseEntity<Boolean>(true,headers,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Boolean>(false,headers,HttpStatus.NOT_FOUND);
+		}
+		
+		
 	}
 	@PutMapping(value="updateProducto/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Producto updateProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
-		return productoService.UpdateProducto(producto, idUsu);
+	public ResponseEntity<Boolean> updateProducto(@RequestBody Producto producto,@PathVariable("idUsu") int idUsu) {
+		HttpHeaders headers = new HttpHeaders();
+		if(productoService.searchProducto(producto.getIdProducto())!=null) {
+			productoService.UpdateProducto(producto, idUsu);
+			return new ResponseEntity<Boolean>(true,headers,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Boolean>(false,headers,HttpStatus.NOT_FOUND);
+		}
 	}
+	
 	@DeleteMapping(value="deleteProducto/{id}/{idUsu}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean deleteProducto(@PathVariable("id") int id,@PathVariable("idUsu") int idUsu) {
-		return productoService.deleteIdProducto(id, idUsu);
+	public ResponseEntity<Boolean> deleteProducto(@PathVariable("id") int id,@PathVariable("idUsu") int idUsu) {
+		HttpHeaders headers = new HttpHeaders();
+		if(productoService.deleteIdProducto(id, idUsu)) {
+			return new ResponseEntity<Boolean>(true,headers,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Boolean>(false,headers,HttpStatus.NOT_FOUND);
+		}
+		
+		
 	}
 	
 }

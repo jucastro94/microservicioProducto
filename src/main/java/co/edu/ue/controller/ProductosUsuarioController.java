@@ -3,7 +3,10 @@ package co.edu.ue.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,18 +22,24 @@ public class ProductosUsuarioController {
 	ProductoUsuarioServiceI productoUsuarioService;
 	
 	@GetMapping(value="productosxusuario/{cedula}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public List<Productousuario> getProductosxUsuario(@PathVariable("cedula") int cedula){
-		return productoUsuarioService.buscarxUsuario(cedula);
+	public ResponseEntity<List<Productousuario>> getProductosxUsuario(@PathVariable("cedula") int cedula){
+		List<Productousuario> dato= productoUsuarioService.buscarxUsuario(cedula);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<List<Productousuario>>(dato,headers,HttpStatus.OK);
 	}
 	@GetMapping(value="usuariosxproducto/{idproducto}", produces =MediaType.APPLICATION_JSON_VALUE)
-	public List<Productousuario> getUsuariosxProducto(@PathVariable("idproducto") int idproducto){
-		return productoUsuarioService.buscarxUsuario(idproducto);
+	public ResponseEntity<List<Productousuario>> getUsuariosxProducto(@PathVariable("idproducto") int idproducto){
+		List<Productousuario> dato= productoUsuarioService.buscarxUsuario(idproducto);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<List<Productousuario>>(dato,headers,HttpStatus.OK);
 	}
 	@PostMapping(value="addPoductoxUsuario/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Productousuario addPoductoxUsuario(@RequestBody Productousuario ProducUsu,@PathVariable("cedula") int idUsu) {
-		System.out.println("------------"+idUsu);
+	public ResponseEntity<Boolean> addPoductoxUsuario(@RequestBody Productousuario ProducUsu,@PathVariable("cedula") int idUsu) {
+		/*System.out.println("------------"+idUsu);
 		System.out.println("------------"+ProducUsu.getFK_producto());
-		System.out.println("------------"+ProducUsu.getFK_usuario());
-		return productoUsuarioService.addProductoUsuario(ProducUsu,idUsu);
+		System.out.println("------------"+ProducUsu.getFK_usuario());*/
+		HttpHeaders headers = new HttpHeaders();
+		productoUsuarioService.addProductoUsuario(ProducUsu,idUsu);
+		return new ResponseEntity<Boolean>(true,headers,HttpStatus.OK);
 	}
 }
