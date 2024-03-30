@@ -26,8 +26,11 @@ public class ProductosUsuarioController {
 	public List<Productousuario> getUsuariosxProducto(@PathVariable("idproducto") int idproducto){
 		return productoUsuarioService.buscarxUsuario(idproducto);
 	}
-	@PostMapping(value="addPoductoxUsuario/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Productousuario addPoductoxUsuario(@RequestBody Productousuario ProducUsu,@PathVariable("idUsu") int idUsu) {
+	@PostMapping(value="addPoductoxUsuario/{cedula}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Productousuario addPoductoxUsuario(@RequestBody Productousuario ProducUsu,@PathVariable("cedula") int idUsu) {
+		System.out.println("------------"+idUsu);
+		System.out.println("------------"+ProducUsu.getFK_producto());
+		System.out.println("------------"+ProducUsu.getFK_usuario());
 		return productoUsuarioService.addProductoUsuario(ProducUsu,idUsu);
 	}
 }

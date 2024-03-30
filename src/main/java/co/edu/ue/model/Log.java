@@ -30,8 +30,8 @@ public class Log implements Serializable {
 	@Column(name="accion")
 	private String accion;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="fecha")
+	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
 	@Column(name="idUsuario")
@@ -39,7 +39,13 @@ public class Log implements Serializable {
 
 	@Column(name="observacion")
 	private String observacion;
-
+	
+	public Date obtenerFecha() {
+		Date date = new Date();
+		//System.out.println("------------------"+date+"-----------------");
+		return date;
+	}
+	
 	public Log() {
 	}
 

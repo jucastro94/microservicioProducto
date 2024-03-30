@@ -1,6 +1,5 @@
 package co.edu.ue.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,6 @@ public class LogService implements LogServiceI{
 		// TODO Auto-generated method stub
 		return logDao.getAllLog();
 	}
-	public Date obtenerFecha() {
-		return new Date();
-	}
+	
 
 }

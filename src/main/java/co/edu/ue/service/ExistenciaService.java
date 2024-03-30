@@ -70,8 +70,8 @@ public class ExistenciaService implements ExistenciaServiceI {
 		Log lg = new Log();
 		lg.setAccion(accion);
 		lg.setIdUsuario(usu);
-		lg.setFecha(log.obtenerFecha());
+		lg.setFecha(lg.obtenerFecha());
 		lg.setObservacion(observacion);
-		log.addLog(lg);
+		
 	}
 }

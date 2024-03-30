@@ -13,6 +13,7 @@ import co.edu.ue.model.Producto;
 public class ProductoService implements ProductoServiceI {
 	@Autowired
 	ProductoDaoI productoDao;
+	@Autowired
 	LogServiceI log;
 	
 	@Override
@@ -61,8 +62,9 @@ public class ProductoService implements ProductoServiceI {
 		Log lg = new Log();
 		lg.setAccion(accion);
 		lg.setIdUsuario(usu);
-		lg.setFecha(log.obtenerFecha());
+		lg.setFecha(lg.obtenerFecha());
 		lg.setObservacion(observacion);
+		//System.out.println("------------------"+lg.obtenerFecha()+"-----------------");
 		log.addLog(lg);
 	}
 
